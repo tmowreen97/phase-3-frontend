@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
 
 function AddGenre (){
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  // const history = useHistory();
+
+  // const handleHistory = () => {
+  //   history.push("/genres")
+  // }
+
+  function handleSubmit(e){
+    e.preventDefault()
+    fetch("http://localhost:9292/genres", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: `${name}`,
+        description: `${description}`
+      }),
+    })
+    setName('')
+    setDescription('')
+    alert("You just created a new genre!")
+    // handleHistory()
+  }
+
+  
   return(
     <div className="addGenre">
-      <form>
+      <h2>Add Genre</h2>
+      <form onSubmit={(e)=>handleSubmit(e)}>
         <ul>
-          <input type='text' placeholder="Name"/>
+          <input value={name} type='text' placeholder="Name" onChange={(e) => {
+            setName(e.target.value)
+            console.log(name)
+          }}/>
         </ul>
         <ul>
-          <input type='text' placeholder="Description"/>
+          <input value={description} type='text' placeholder="Description"onChange={(e) => {
+            setDescription(e.target.value)
+            console.log(description)
+          }}/>
         </ul>
         <button type='submit'>Submit</button>
       </form>

@@ -1,32 +1,42 @@
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import NavBar from './NavBar';
 import Home from './Home';
 import Movies from "./Movies";
 import Genres from "./Genres";
 import AddMovie from "./AddMovie";
 import AddGenre from "./AddGenre";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 
 function App() {
   const [genres, setGenres] =useState(null)
   const [movies, setMovies] = useState(null)
   
+  useEffect(()=>{
+    fetch("http://localhost:9292/genres")
+    .then(resp => resp.json())
+    .then(data => setGenres(data))
+  },[])
+
+  // function handleHistory(){
+  //   useHistory.push("/genres")
+  // }
+  
   return (
     <div className="app">
       <NavBar/>
       <Switch>
         <Route path="/movies">
-          <Movies setMovies={setMovies} movies={movies} genres={genres}/>
+          <Movies  genres={genres}/>
         </Route>
         <Route path="/genres">
           <Genres setGenres={setGenres} genres={genres}/>
         </Route>
         <Route path="/addMovie">
-          <AddMovie/>
+          <AddMovie genres={genres}/>
         </Route>
         <Route path="/addGenre">
-          <AddGenre/>
+          <AddGenre setGenres={setGenres}/>
         </Route>
         <Route exact path="/">
           <Home/>
