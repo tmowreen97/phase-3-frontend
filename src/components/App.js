@@ -18,6 +18,14 @@ function App() {
     .then(data => setGenres(data))
   },[])
 
+  useEffect(()=>{
+    fetch("http://localhost:9292/movies")
+    .then(resp=> resp.json())
+    .then((data)=> {
+      setMovies(data)
+    })
+  },[])
+
   // function handleHistory(){
   //   useHistory.push("/genres")
   // }
@@ -27,13 +35,13 @@ function App() {
       <NavBar/>
       <Switch>
         <Route path="/movies">
-          <Movies  genres={genres}/>
+          <Movies  genres={genres} setMovies={setMovies} movies={movies}/>
         </Route>
         <Route path="/genres">
           <Genres setGenres={setGenres} genres={genres}/>
         </Route>
         <Route path="/addMovie">
-          <AddMovie genres={genres}/>
+          <AddMovie genres={genres} movies={movies}/>
         </Route>
         <Route path="/addGenre">
           <AddGenre setGenres={setGenres}/>

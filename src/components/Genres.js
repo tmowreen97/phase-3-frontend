@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function Genres ({setGenres, genres}){
-  
-  useEffect(()=>{
-    fetch("http://localhost:9292/genres")
-    .then(resp => resp.json())
-    .then(data => setGenres(data))
-  },[])
 
   const renderGenres = (genre)=> {
     return(
