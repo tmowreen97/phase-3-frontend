@@ -96,148 +96,149 @@ function AddMovie({genres, movies}){
     alert('You edited a movie!')
   }
 
-  // function findID(e){
-  //   e.preventDefault()
-  //   // setEditMovieHash(prevState => {
-  //   //   return{...prevState, genre_id: (movies.find(movie => movie.title=e.target.value)).genre_id}
-  //   // })
-  //   console.log(editMovieHash)
-  //   // let findMovie = (movies.find(movie => movie.title=e.target.value))
-  //   // let genre_id = findMovie.genre_id
-  //   // console.log('findMovie', findMovie)
-  //   // console.log('genre_id', genre_id)
-  //   console.log('movies', movies)
-  //   console.log('genres', genres)
-  // }
-
   return(
-    <div className="addMovie">
-      <h2>Add Movie</h2>
-      <form onSubmit={(e)=> handleAddMovieSubmit(e)}>
-        <ul>
-          <input type='text' placeholder="Image URL" onChange={(e) => {
-            setNewMovieHash(prevState => {
-              return{...prevState, image: e.target.value }
-            })
-          }}
-          />
-        </ul>
-        <ul>
-          <input type='text'placeholder="Title" onChange={(e) => {
-            setNewMovieHash(prevState => {
-              return{...prevState, title: e.target.value }
-            })
-          }}
-          />
-        </ul>
-        <ul>
-          <input type='text' placeholder="Director" onChange={(e) => {
-            setNewMovieHash(prevState => {
-              return{...prevState, director: e.target.value }
-            })
-          }}
-          />
-        </ul>
-        <ul>
-          <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
-            setNewMovieHash(prevState => {
-              return{...prevState, rating: parseFloat(e.target.value)}
-            })
-          }}
-          /> /10
-        </ul>
-        <ul>
-          <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
-            setNewMovieHash(prevState => {
-              return{...prevState, runtime: parseInt(e.target.value) }
-            })
-          }}
-          /> mins
-        </ul>
-        <ul>
+    <div className="add_edit_Movie">
+      <div className="addMovieDiv">
+        <h2 className="addMovieTitle">Add Movie</h2>
+        <form onSubmit={(e)=> handleAddMovieSubmit(e)} className="addMovieForm">
+          <ul>
+            <label className="label">ImageURL: </label>
+            <input type='text' placeholder="Image URL" onChange={(e) => {
+              setNewMovieHash(prevState => {
+                return{...prevState, image: e.target.value }
+              })
+            }}
+            />
+          </ul>
+          <ul>
+            <label className="label">Title: </label>
+            <input type='text'placeholder="Title" onChange={(e) => {
+              setNewMovieHash(prevState => {
+                return{...prevState, title: e.target.value }
+              })
+            }}
+            />
+          </ul>
+          <ul>
+            <label className="label">Director: </label>
+            <input type='text' placeholder="Director" onChange={(e) => {
+              setNewMovieHash(prevState => {
+                return{...prevState, director: e.target.value }
+              })
+            }}
+            />
+          </ul>
+          <ul>
+          <label className="label">Rating: </label>
+            <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+              setNewMovieHash(prevState => {
+                return{...prevState, rating: parseFloat(e.target.value)}
+              })
+            }}
+            /> /10
+          </ul>
+          <ul>
+          <label className="label">Runtime: </label>
+            <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
+              setNewMovieHash(prevState => {
+                return{...prevState, runtime: parseInt(e.target.value) }
+              })
+            }}
+            /> mins
+          </ul>
+          <ul>
+          <label className="label">Genre: </label>
+            <select type='text' onChange={(e) => {
+              e.preventDefault()
+              setNewMovieGenre(e.target.value)
+              }}>
+                <option disabled selected>Select Genre</option>
+              {genreNames && genreNames.map((name)=>{
+                return(
+                  <option key={name.name} value={name.name}>{name.name}</option>
+                )
+              })}
+            </select>
+          </ul> 
+          <button type="submit">Add New Movie</button>
+        </form>
+      </div>
+      <div className="editMovieDiv">
+        <h2>Edit Movie</h2>
+        <form onSubmit={(e)=> handleEditMovieSubmit(e)} className="editMovieForm">
+          <ul>
+          <label className="label">Movie You Want to Edit: </label>
+            <select type='text' onChange={(e)=> {
+              setEditMovieTitle(e.target.value)
+              console.log(editMovieTitle)
+            }}>
+                <option disabled selected>Select Movie</option>
+              {movieTitles && movieTitles.map((title)=>{
+                return(
+                  <option key={title.title} value={title.title}>{title.title}</option>
+                )
+              })}
+            </select>
+          </ul>
+          <ul>
+          <label className="label">Image URL: </label>
+            <input type='text'placeholder="Image URL" onChange={(e) => {
+              setEditMovieHash(prevState => {
+                return{...prevState, image: e.target.value }
+              })
+            }}/>
+          </ul>
+          <ul>
+          <label className="label">Title: </label>
+            <input type='text'placeholder="Title" onChange={(e) => {
+              setEditMovieHash(prevState => {
+                return{...prevState, title: e.target.value }
+              })
+            }}/>
+          </ul>
+          <ul>
+          <label className="label">Director: </label>
+            <input type='text' placeholder="Director" onChange={(e) => {
+              setEditMovieHash(prevState => {
+                return{...prevState, director: e.target.value }
+              })
+            }}/>
+          </ul>
+          <ul>
+          <label className="label">Rating: </label>
+            <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+              setEditMovieHash(prevState => {
+                return{...prevState, rating: parseFloat(e.target.value) }
+              })
+            }}/> /10
+          </ul>
+          <ul>
+          <label className="label">Runtime: </label>
+            <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
+              setEditMovieHash(prevState => {
+                return{...prevState, runtime: parseInt(e.target.value) }
+              })
+            }}/> mins
+          </ul>
+          <ul>
+          <label className="label">Genre: </label>
           <select type='text' onChange={(e) => {
-            e.preventDefault()
-            setNewMovieGenre(e.target.value)
-            // setNewMovieHash(prevState => {
-            //   return{...prevState, genre: e.target.value}
-            // })
-            }}>
-              <option disabled selected>Select Genre</option>
-            {genreNames && genreNames.map((name)=>{
-              return(
-                <option key={name.name} value={name.name}>{name.name}</option>
-              )
-            })}
-          </select>
-        </ul> 
-        <button type="submit">Add New Movie</button>
-      </form>
-      <h2>Edit Movie</h2>
-      <form onSubmit={(e)=> handleEditMovieSubmit(e)}>
-        <ul>
-          <select type='text' onChange={(e)=> {
-            setEditMovieTitle(e.target.value)
-            console.log(editMovieTitle)
-          }}>
-              <option disabled selected>Select Movie</option>
-            {movieTitles && movieTitles.map((title)=>{
-              return(
-                <option key={title.title} value={title.title}>{title.title}</option>
-              )
-            })}
-          </select>
-        </ul>
-        <ul>
-          <input type='text'placeholder="Image URL" onChange={(e) => {
-            setEditMovieHash(prevState => {
-              return{...prevState, image: e.target.value }
-            })
-          }}/>
-        </ul>
-        <ul>
-          <input type='text'placeholder="Title" onChange={(e) => {
-            setEditMovieHash(prevState => {
-              return{...prevState, title: e.target.value }
-            })
-          }}/>
-        </ul>
-        <ul>
-          <input type='text' placeholder="Director" onChange={(e) => {
-            setEditMovieHash(prevState => {
-              return{...prevState, director: e.target.value }
-            })
-          }}/>
-        </ul>
-        <ul>
-          <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
-            setEditMovieHash(prevState => {
-              return{...prevState, rating: parseFloat(e.target.value) }
-            })
-          }}/> /10
-        </ul>
-        <ul>
-          <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
-            setEditMovieHash(prevState => {
-              return{...prevState, runtime: parseInt(e.target.value) }
-            })
-          }}/> mins
-        </ul>
-        <ul>
-        <select type='text' onChange={(e) => {
-            e.preventDefault()
-            setEditMovieGenre(e.target.value)
-            console.log(editMovieGenre)
-            }}>
-              <option disabled selected>Select Genre</option>
-            {genreNames && genreNames.map((name)=>{
-              return(
-                <option key={name.name} value={name.name}>{name.name}</option>
-              )
-            })}
-          </select>
-        </ul> 
-        <button type="submit">Edit Movie</button>
-      </form>
+              e.preventDefault()
+              setEditMovieGenre(e.target.value)
+              console.log(editMovieGenre)
+              }}>
+                <option disabled selected>Select Genre</option>
+              {genreNames && genreNames.map((name)=>{
+                return(
+                  <option key={name.name} value={name.name}>{name.name}</option>
+                )
+              })}
+            </select>
+          </ul> 
+          <button className="button" type="submit">Edit Movie</button>
+        </form>
+      </div>
+      
     </div>
   )
 }
