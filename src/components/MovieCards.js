@@ -8,20 +8,10 @@ import '../box.css'
 
 function MovieCards({ movieList, handleDeleteMovie }) {
 
-
-
-  // function handleDeleteMovie(movie){
-  //   alert(`You just deleted ${movie.title}`)
-  //   // fetch(`http://localhost:9292/movie/${movie.id}`, {
-  //   //   method: "DELETE",
-  //   // })
-  //   // .then(resp => resp.json)
-  //   // .then(data => console.log(data))
-  // }
-
   const renderCard = (movie)=> {
     return(
-      <Card style={{ width: '18rem' }} key={movie.title} className="box">
+      <div className='movie_list_cards'>
+         <Card style={{ width: '18rem' }} key={movie.title} className="box">
         <Card.Img variant="top" src={movie.image} className="cardImg"/>
         <Card.Body className="cardBody">
           <h2 className="cardTitle">{movie.title}</h2>
@@ -33,6 +23,7 @@ function MovieCards({ movieList, handleDeleteMovie }) {
         </Card.Body>
         <button onClick={() => handleDeleteMovie(movie)} >Delete</button>
       </Card>
+      </div>
     )      
     }
   return (

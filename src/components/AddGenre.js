@@ -30,23 +30,28 @@ function AddGenre (){
 
   
   return(
-    <div className="addGenre">
-      <h2>Add Genre</h2>
-      <form onSubmit={(e)=>handleSubmit(e)}>
+    <div>
+      <h2 className="add_genre_title">Add Genre</h2>
+      <div className="genre_form">
+        <form onSubmit={(e)=>handleSubmit(e)}>
         <ul>
+          <label className="label">New Genre Name: </label>
           <input value={name} type='text' placeholder="Name" onChange={(e) => {
             setName(e.target.value)
             console.log(name)
           }}/>
         </ul>
         <ul>
-          <input value={description} type='text' placeholder="Description"onChange={(e) => {
+        <label className="label">New Genre Description: </label>
+          <input className="genre_desc" value={description} type='text' placeholder="Description"onChange={(e) => {
             setDescription(e.target.value)
             console.log(description)
           }}/>
         </ul>
-        <button type='submit'>Submit</button>
+        <button className="add_genre_button" type='submit'>Add New Genre</button>
       </form>
+      </div>
+      
     </div>
   )
 }

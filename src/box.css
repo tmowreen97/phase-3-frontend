@@ -1,5 +1,5 @@
 .box {
-  background-color: darkgrey;
+  background-color: aqua;
   border-radius: 10px 10px 10px 10px;
   overflow: hidden;
   height: 300px;
@@ -9,8 +9,8 @@
   display:grid;
   justify-content:center;
   cursor: pointer;
-  margin: 3px;
-  margin-bottom: 3px;
+  /* margin: 3px; */
+  /* margin-bottom: 35px; */
   transition: transform 1.5s ease-in-out;
 }
 
@@ -19,13 +19,16 @@
 
 }
 .grid {
-  min-height: 150%;
+  height: 150%;
+  /* max-height: 200%; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 10%;
-  padding-bottom: 10%;
-  /* margin-right: 10%; */
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(192, 197, 197, 0.511);
+  margin: 50px;
 }
 
 .grid > div{

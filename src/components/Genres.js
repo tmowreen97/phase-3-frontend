@@ -4,15 +4,16 @@ function Genres ({setGenres, genres}){
 
   const renderGenres = (genre)=> {
     return(
-      <div key={genre.name}>
-        <h2>{genre.name}</h2>
-        <li>{genre.description}</li>
+      <div className="genre_list" key={genre.name}>
+        <h2 className="genre_title">{genre.name}</h2>
+        <li className="genre_desc">{genre.description}</li>
       </div>
     )
   }
 
   return(
-    <div className="genreList">
+    <div className="genres" >
+      <h1 className="genre_list_title">Genre List</h1>
       {genres && genres.map(renderGenres)}
     </div>
   )

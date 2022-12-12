@@ -16,7 +16,7 @@ function Movies ({setMovies, movies}){
 
   return(
     <div className="movieList">
-      <h1>Movie List</h1>
+      <h1 className="movie_list_title">Movie List</h1>
       {movies && <MovieCards movieList={movies} handleDeleteMovie={handleDeleteMovie}/>}
     </div>
 

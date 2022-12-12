@@ -2,10 +2,10 @@
   box-sizing: border-box;
 }
 
-/* body {
-  margin:0;
-  /* background-image: url("https://media.istockphoto.com/vectors/herbs-and-spices-seamless-pattern-ginger-spinach-onion-pepper-garlic-vector-id1258733624?k=20&m=1258733624&s=612x612&w=0&h=O1jNq06ugDRlw6I_RQwnh_79gFwYTXihoB7_Lptdxfs="); */
+body{
+  background-image: url('https://images.alphacoders.com/441/441002.jpg');
 
+}
 .addMovieDiv, .editMovieDiv{
   display: flex;
   text-align:left;
@@ -26,48 +26,130 @@
   padding-right: 1rem;
 }
 
-
-.nav {
-  background-color:rgb(228, 162, 86);
-  color: white;
-  display:flex;
-  justify-content:center;
+.home{
+  background-color:rgba(55, 79, 81, 0.625);
+  /* margin-left: 30%;
+  margin-right: 30%; */
+  padding:10%;
+  margin-top: 10%;
   text-align: center;
-  align-items:center;
-  padding: 0;
+  /* display: flex; */
+}
+
+.title{
+  font-family:'Holtwood One SC';
+  font-weight: 500;
+  font-size: 700%;
+  color:aliceblue;
+  text-decoration-color: black;
+  text-shadow: 90%;
+  
+}
+.nav {
+  background-color:rgb(31, 45, 46);
+  color: aliceblue;
+  display:flex;
+  justify-content:space-around;
+  font-family:'Shrikhand';
+  font-size: 100%;
+  font-weight: 50;
+  padding-top: 5px;
 
 }
+
+
 
 .nav ul{
   list-style: none;
   display: flex;
   text-align: center;
-  padding: .50rem;
+  padding: .70rem;
 
 }
 
 .nav a{
   color: inherit;
-  text-decoration: none;
+  text-decoration:none;
   height: 100%;
   display: flex;
   align-items: center;
-  padding: .50rem;
-  gap: 20;
+  padding: .30rem;
+  /* gap: 50; */
 }
 
 .nav a:hover{
-  background-color:rgb(217, 113, 21);
+  background-color:rgba(55, 79, 81, 0.728);
+  color:rgb(130, 228, 228);
 }
-/* 
-.active{
+
+.movie_list_cards{
+  padding: 10px;
+}
+  
+  
+
+/* .active{
   background-color: rgb(213, 126, 50);
-}
+} */
 
 .home{
   text-align: center;
 }
-.about{
+
+.movie_list_title{
+  text-align: center;
+  font-family:'Holtwood One SC';
+  color: antiquewhite;
+  text-shadow: 80%;
+  text-shadow: 30px;
+  background-color: black;
+
+}
+.add_genre_title{
+  text-align: center;
+  font-family:'Holtwood One SC';
+  color: antiquewhite;
+  text-shadow: 80%;
+  text-shadow: 30px;
+  background-color: black;
+  margin-bottom: 50px;
+}
+
+.genre_form{
+  background-color: rgba(192, 197, 197, 0.712);
+  align-self: center;
+  text-align: center;
+  padding: 20px;
+
+}
+
+.genre_list{
+  background-color: rgba(192, 197, 197, 0.712);
+  text-align: justify;
+  margin-left: 50px;
+  margin-right: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: 'Lora';
+  font-weight: 500;
+}
+.genre_list_title{
+  text-align: center;
+  font-family:'Holtwood One SC';
+  color: antiquewhite;
+  text-shadow: 80%;
+  text-shadow: 30px;
+  background-color: black;
+  margin-bottom: 50px;
+}
+.genre_title{
+  font-family: 'Lora';
+  font-weight: 600;
+  font-style: italic;
+  font-size: 250%;
+
+}
+/* .about{
   background-color:rgba(236, 227, 193, 0.819);
   text-align: center;
   padding-top: 5%;
@@ -75,7 +157,7 @@
   margin-top: 15%;
   margin-right: 20%;
   margin-left: 20%;
-} */
+}  */
 
 /* .recipeimg{
   width:50%;
