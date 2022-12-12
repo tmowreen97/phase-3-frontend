@@ -13,10 +13,10 @@ export default function NavBar(){
         <CustomLink href="/genres">Genres</CustomLink>
       </ul>
       <ul>
-        <CustomLink href="/addMovie">Add Movie</CustomLink>
+        <CustomLink href="/add-edit-movie">Add/Edit Movie</CustomLink>
       </ul>
       <ul>
-        <CustomLink href="/addGenre">Add Genre</CustomLink>
+        <CustomLink href="/add-genre">Add Genre</CustomLink>
       </ul>
     </nav>
   )

@@ -6,21 +6,41 @@ body{
   background-image: url('https://images.alphacoders.com/441/441002.jpg');
 
 }
-.addMovieDiv, .editMovieDiv{
-  display: flex;
-  text-align:left;
-  margin-top: 4%;
-  padding-bottom: 2%;
-  padding-left: 30%;
-  
-}
+/* .add_edit_movie{
+  background-color: rgba(192, 197, 197, 0.712);
+} */
 
-
-
-.button{
+.add_movie_title{
   text-align: center;
+  font-family:'Holtwood One SC';
+  color: antiquewhite;
+  text-shadow: 80%;
+  text-shadow: 30px;
+  background-color: black;
+}
+.edit_movie_title{
+  text-align: center;
+  font-family:'Holtwood One SC';
+  color: antiquewhite;
+  text-shadow: 80%;
+  text-shadow: 30px;
+  background-color: black;
+}
+.movie_form_input{
+  width: 100px;
 }
 
+.add_movie_form, .edit_movie_form{
+    background-color: rgba(192, 197, 197, 0.79);
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    text-align: center; 
+    font-family: 'Roboto Slab';
+    font-weight: 500;
+}
 
 .label{
   padding-right: 1rem;
@@ -28,12 +48,9 @@ body{
 
 .home{
   background-color:rgba(55, 79, 81, 0.625);
-  /* margin-left: 30%;
-  margin-right: 30%; */
   padding:10%;
   margin-top: 10%;
   text-align: center;
-  /* display: flex; */
 }
 
 .title{
@@ -43,8 +60,8 @@ body{
   color:aliceblue;
   text-decoration-color: black;
   text-shadow: 90%;
-  
 }
+
 .nav {
   background-color:rgb(31, 45, 46);
   color: aliceblue;
@@ -54,17 +71,13 @@ body{
   font-size: 100%;
   font-weight: 50;
   padding-top: 5px;
-
 }
-
-
 
 .nav ul{
   list-style: none;
   display: flex;
   text-align: center;
   padding: .70rem;
-
 }
 
 .nav a{
@@ -74,7 +87,6 @@ body{
   display: flex;
   align-items: center;
   padding: .30rem;
-  /* gap: 50; */
 }
 
 .nav a:hover{
@@ -85,16 +97,12 @@ body{
 .movie_list_cards{
   padding: 10px;
 }
-  
-  
 
-/* .active{
-  background-color: rgb(213, 126, 50);
-} */
-
-.home{
-  text-align: center;
+.active{
+  /* background-color:rgba(55, 79, 81, 0.728); */
+  color:rgb(130, 228, 228);
 }
+
 
 .movie_list_title{
   text-align: center;
@@ -103,8 +111,8 @@ body{
   text-shadow: 80%;
   text-shadow: 30px;
   background-color: black;
-
 }
+
 .add_genre_title{
   text-align: center;
   font-family:'Holtwood One SC';
@@ -115,22 +123,27 @@ body{
   margin-bottom: 50px;
 }
 
-.genre_form{
-  background-color: rgba(192, 197, 197, 0.712);
+.add_genre_form{
+  text-align: center;
+  background-color: rgba(192, 197, 197, 0.79);
   align-self: center;
   text-align: center;
-  padding: 20px;
-
+  font-family: 'Roboto Slab';
+  font-weight: 500;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .genre_list{
-  background-color: rgba(192, 197, 197, 0.712);
+  background-color: rgba(192, 197, 197, 0.79);
   text-align: justify;
   margin-left: 50px;
   margin-right: 80px;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: 'Lora';
+  font-family: 'Roboto Slab';
   font-weight: 500;
 }
 .genre_list_title{
@@ -149,63 +162,17 @@ body{
   font-size: 250%;
 
 }
-/* .about{
-  background-color:rgba(236, 227, 193, 0.819);
-  text-align: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin-top: 15%;
-  margin-right: 20%;
-  margin-left: 20%;
-}  */
 
-/* .recipeimg{
-  width:50%;
-}
-.recipeList{
-  background-color:rgba(236, 227, 193, 0.819) ;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 15%;
-  margin-top: 5%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-} */
-/* .myRecipes{
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
+.home_about{
+  font-family: 'Roboto Slab';
+  color: rgb(243, 239, 234);
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
-h2{
-  color:rgb(46, 28, 2);
-  text-align: center;
-}
-h3{
-  color:rgb(46, 28, 2);
-  text-align: center;
-  
+.genre_desc{
+  list-style-type: square;
+  font-size: 110%;
+  padding-bottom: 10px;
 }
 
-ul{
-  list-style:circle;
-  list-style-position: inside;
-} */
-
-/* h1{
-  font-family: 'Leckerli One';
-  color:rgb(46, 28, 2);
-  font-weight:50;
-  font-size: 500%;
-  background-color:rgba(236, 227, 193, 0.819);
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin-top: 15%;
-  margin-right: 20%;
-  margin-left: 20%;
-}
-
-.lastLine{
-  font-style: oblique;
-} */

@@ -21,7 +21,7 @@ function MovieCards({ movieList, handleDeleteMovie }) {
             <ul>{movie.genre.name}</ul>
           </div>
         </Card.Body>
-        <button onClick={() => handleDeleteMovie(movie)} >Delete</button>
+        <button className="delete_card_button" onClick={() => handleDeleteMovie(movie)} >Delete</button>
       </Card>
       </div>
     )      

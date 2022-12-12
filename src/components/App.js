@@ -40,10 +40,10 @@ function App() {
         <Route path="/genres">
           <Genres setGenres={setGenres} genres={genres}/>
         </Route>
-        <Route path="/addMovie">
+        <Route path="/add-edit-movie">
           <AddMovie genres={genres} movies={movies}/>
         </Route>
-        <Route path="/addGenre">
+        <Route path="/add-genre">
           <AddGenre setGenres={setGenres}/>
         </Route>
         <Route exact path="/">

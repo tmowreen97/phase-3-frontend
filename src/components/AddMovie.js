@@ -97,12 +97,12 @@ function AddMovie({genres, movies}){
   }
 
   return(
-    <div className="add_edit_Movie">
-      <div className="addMovieDiv">
-        <h2 className="addMovieTitle">Add Movie</h2>
-        <form onSubmit={(e)=> handleAddMovieSubmit(e)} className="addMovieForm">
+    <div className="add_edit_movie">
+      <div className="add_movie_div">
+        <h1 className="add_movie_title">Add Movie</h1>
+        <form onSubmit={(e)=> handleAddMovieSubmit(e)} className="add_movie_form">
           <ul>
-            <label className="label">ImageURL: </label>
+            <label className="label">Image URL: </label>
             <input type='text' placeholder="Image URL" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, image: e.target.value }
@@ -130,7 +130,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Rating: </label>
-            <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+            <input className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, rating: parseFloat(e.target.value)}
               })
@@ -139,7 +139,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Runtime: </label>
-            <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
+            <input className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, runtime: parseInt(e.target.value) }
               })
@@ -160,14 +160,14 @@ function AddMovie({genres, movies}){
               })}
             </select>
           </ul> 
-          <button type="submit">Add New Movie</button>
+          <button className="add_new_movie_button" type="submit">Add New Movie</button>
         </form>
       </div>
-      <div className="editMovieDiv">
-        <h2>Edit Movie</h2>
-        <form onSubmit={(e)=> handleEditMovieSubmit(e)} className="editMovieForm">
+      <div className="edit_movie_div">
+        <h1 className="edit_movie_title">Edit Movie</h1>
+        <form onSubmit={(e)=> handleEditMovieSubmit(e)} className="edit_movie_form">
           <ul>
-          <label className="label">Movie You Want to Edit: </label>
+          <label className="label">Edit Movie: </label>
             <select type='text' onChange={(e)=> {
               setEditMovieTitle(e.target.value)
               console.log(editMovieTitle)
@@ -206,7 +206,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Rating: </label>
-            <input type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+            <input className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, rating: parseFloat(e.target.value) }
               })
@@ -214,7 +214,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Runtime: </label>
-            <input type='number' min="0" placeholder="Runtime" onChange={(e) => {
+            <input className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, runtime: parseInt(e.target.value) }
               })
