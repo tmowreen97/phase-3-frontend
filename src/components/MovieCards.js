@@ -1,6 +1,3 @@
-import { render } from '@testing-library/react';
-import { useEffect } from 'react';
-
 // import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import '../box.css'
@@ -24,13 +21,12 @@ function MovieCards({ movieList, handleDeleteMovie }) {
         <button className="delete_card_button" onClick={() => handleDeleteMovie(movie)} >Delete</button>
         </Card>
       </div>
-    )      
-    }
+    )}
+
   return (
     <div className="grid">
-      {movieList.map(renderCard)}
+      {movieList && movieList.map(renderCard)}
     </div>
-  )
-}
+  )}
 
 export default MovieCards;

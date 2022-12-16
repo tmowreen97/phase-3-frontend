@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 
-function AddGenre (){
+function AddGenre ({ handleNewGenre }){
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  // const history = useHistory();
-
-  // const handleHistory = () => {
-  //   history.push("/genres")
-  // }
 
   function handleSubmit(e){
     e.preventDefault()
@@ -22,9 +16,14 @@ function AddGenre (){
         description: `${description}`
       }),
     })
-    setName('')
-    setDescription('')
-    alert("You just created a new genre!")
+    .then(resp => resp.json())
+    .then(data => {
+      setName('')
+      setDescription('')
+      alert(`You just created a new genre, ${data.name}!`)
+      handleNewGenre()
+    })
+
     // handleHistory()
   }
 

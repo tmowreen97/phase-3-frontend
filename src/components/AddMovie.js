@@ -1,15 +1,18 @@
 import React, { useEffect, useState }from "react";
 
-function AddMovie({genres, movies}){
+function AddMovie({genres, movies, handleNewMovie, handleEditMovie}){
   const [movieTitles, setMovieTitles]= useState('')
   const [genreNames, setGenreNames]= useState('')
-  const [editMovieId, setEditMovieId] = useState('')
+  const [editMovie, setEditMovie] = useState({
+    title: '',
+    id: 0
+  })
   const [newMovieHash, setNewMovieHash] = useState({
     image: '',
     title: '',
     director: '',
-    rating: 0,
-    runtime: 0,
+    rating: '',
+    runtime: '',
     genre_id: 0
   })
   const [editMovieHash, setEditMovieHash] = useState({
@@ -17,8 +20,8 @@ function AddMovie({genres, movies}){
     image: '',
     title: '',
     director: '',
-    rating: 0,
-    runtime: 0
+    rating: '',
+    runtime: ''
   })
 
 //Select options of Movie Titles to edit
@@ -27,6 +30,7 @@ function AddMovie({genres, movies}){
     .then(resp=> resp.json())
     .then(data=> setMovieTitles(data))
   },[])
+
 //Select options of Genre Names to add to a new movie
   useEffect(()=> {
     fetch("http://localhost:9292/genres/names")
@@ -34,29 +38,35 @@ function AddMovie({genres, movies}){
     .then(data=> setGenreNames(data))
   },[])
 
+//Handle functions
+
+//new movie genre
   function handleGenreChange(e){
     e.preventDefault()
     genres.map((genre)=> {
-      if (genre.name == e.target.value) {
+      if (genre.name === e.target.value) {
         setNewMovieHash(prevState => {
           return{...prevState, genre_id: genre.id}
         })
       }
     })
   }
-
+//movie selected to edit
 function handleSelectMovieToEdit(e){
     e.preventDefault()
     movies.map((movie)=> {
-      if (movie.title == e.target.value){
-        setEditMovieId(movie.id)
+      if (movie.title === e.target.value){
+        setEditMovie({
+          title: movie.title,
+          id: movie.id
+        })
       }
     })
   }
-
+//changing selected movie genre
   function handleEditMovieGenre(e){
     genres.map((genre)=> {
-      if (genre.name==e.target.value){
+      if (genre.name===e.target.value){
         setEditMovieHash(prevState=> {
           return{...prevState, genre_id: genre.id}
         })
@@ -67,39 +77,54 @@ function handleSelectMovieToEdit(e){
 
 //Form Submit for Add Movie
   function handleAddMovieSubmit(e){
-    e.preventDefault()
-
+    e.preventDefault();
+    const path = "/movies"
     fetch("http://localhost:9292/movies", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type":"application/json",
       },
       body: JSON.stringify(newMovieHash),
     })
-    alert('You added a movie!')
-    setNewMovieHash({
-      image: '',
-      title: '',
-      director: '',
-      rating: 0,
-      runtime: 0,
-      genre_id: 0
-    })
-  }
-  console.log(newMovieHash)
+      .then((resp)=> resp.json())
+      .then((data) => {
+        alert(`You just added a new movie, ${data.title}!`)
+        setNewMovieHash({
+          image: '',
+          title: '',
+          director: '',
+          rating: '',
+          runtime: '',
+          genre_id: 0
+        })
+        handleNewMovie(data)
+      });
+  }  
 
-
-  //Form Submit for Edit Movie
+//Form Submit for Edit Movie
   function handleEditMovieSubmit(e){
     e.preventDefault()
-    fetch(`http://localhost:9292/movie/${editMovieId}`, {
+    fetch(`http://localhost:9292/movie/${editMovie.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(editMovieHash),
     })
-    alert('You edited a movie!')
+    .then(resp => resp.json())
+    .then(data=> {
+      handleEditMovie()
+      alert(`You just edited ${editMovie.title}!`)
+      setEditMovieHash({
+        genre_id: 0,
+        image: '',
+        title: '',
+        director: '',
+        rating: 0,
+        runtime: 0
+    })
+    })
+    
   }
 
   return(
@@ -182,7 +207,7 @@ function handleSelectMovieToEdit(e){
           </ul>
           <ul>
           <label className="label">Image URL: </label>
-            <input type='text'placeholder="Image URL" onChange={(e) => {
+            <input value={editMovieHash.image} type='text'placeholder="Image URL" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, image: e.target.value }
               })
@@ -190,7 +215,7 @@ function handleSelectMovieToEdit(e){
           </ul>
           <ul>
           <label className="label">Title: </label>
-            <input type='text'placeholder="Title" onChange={(e) => {
+            <input value={editMovieHash.title} type='text'placeholder="Title" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, title: e.target.value }
               })
@@ -198,7 +223,7 @@ function handleSelectMovieToEdit(e){
           </ul>
           <ul>
           <label className="label">Director: </label>
-            <input type='text' placeholder="Director" onChange={(e) => {
+            <input value={editMovieHash.director} type='text' placeholder="Director" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, director: e.target.value }
               })
@@ -206,7 +231,7 @@ function handleSelectMovieToEdit(e){
           </ul>
           <ul>
           <label className="label">Rating: </label>
-            <input className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+            <input value={editMovieHash.rating} className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, rating: parseFloat(e.target.value) }
               })
@@ -214,7 +239,7 @@ function handleSelectMovieToEdit(e){
           </ul>
           <ul>
           <label className="label">Runtime: </label>
-            <input className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
+            <input value={editMovieHash.runtime} className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
               setEditMovieHash(prevState => {
                 return{...prevState, runtime: parseInt(e.target.value) }
               })
