@@ -26,7 +26,7 @@ body{
   text-shadow: 30px;
   background-color: black;
 }
-.movie_form_input{
+.movie_form_input, .genre_form_input{
   width: 100px;
 }
 

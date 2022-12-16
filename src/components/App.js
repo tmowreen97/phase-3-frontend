@@ -11,7 +11,11 @@ import { Switch, Route, useHistory } from "react-router-dom";
 function App() {
   const [genres, setGenres] =useState(null)
   const [movies, setMovies] = useState(null)
-  
+  // const history = useHistory();
+
+  // function handleHistory(){
+  //   history.push("/genres")
+  // }
   useEffect(()=>{
     fetch("http://localhost:9292/genres")
     .then(resp => resp.json())
@@ -26,9 +30,6 @@ function App() {
     })
   },[])
 
-  // function handleHistory(){
-  //   useHistory.push("/genres")
-  // }
   
   return (
     <div className="app">
@@ -44,7 +45,7 @@ function App() {
           <AddMovie genres={genres} movies={movies}/>
         </Route>
         <Route path="/add-genre">
-          <AddGenre setGenres={setGenres}/>
+          <AddGenre  setGenres={setGenres}/>
         </Route>
         <Route exact path="/">
           <Home/>

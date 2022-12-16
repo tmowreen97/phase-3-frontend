@@ -3,19 +3,17 @@ import React, { useEffect, useState }from "react";
 function AddMovie({genres, movies}){
   const [movieTitles, setMovieTitles]= useState('')
   const [genreNames, setGenreNames]= useState('')
-  const [editMovieTitle, setEditMovieTitle] = useState('')
-  const [editMovieGenre, setEditMovieGenre]= useState('')
-  const [newMovieGenre, setNewMovieGenre] = useState('')
+  const [editMovieId, setEditMovieId] = useState('')
   const [newMovieHash, setNewMovieHash] = useState({
     image: '',
     title: '',
     director: '',
     rating: 0,
     runtime: 0,
-    genre_id: ''
+    genre_id: 0
   })
   const [editMovieHash, setEditMovieHash] = useState({
-    genre_id:'',
+    genre_id: 0,
     image: '',
     title: '',
     director: '',
@@ -36,62 +34,70 @@ function AddMovie({genres, movies}){
     .then(data=> setGenreNames(data))
   },[])
 
-//Finding functions
-  function isThisTheMovie(movie){
-    return movie.title === editMovieTitle
+  function handleGenreChange(e){
+    e.preventDefault()
+    genres.map((genre)=> {
+      if (genre.name == e.target.value) {
+        setNewMovieHash(prevState => {
+          return{...prevState, genre_id: genre.id}
+        })
+      }
+    })
   }
 
-  function isThisTheGenre(genre){
-    return genre.name === editMovieGenre
+function handleSelectMovieToEdit(e){
+    e.preventDefault()
+    movies.map((movie)=> {
+      if (movie.title == e.target.value){
+        setEditMovieId(movie.id)
+      }
+    })
   }
 
-  function findGenreId (genre){
-    return genre.name === newMovieGenre
+  function handleEditMovieGenre(e){
+    genres.map((genre)=> {
+      if (genre.name==e.target.value){
+        setEditMovieHash(prevState=> {
+          return{...prevState, genre_id: genre.id}
+        })
+      }
+    })
   }
+
 
 //Form Submit for Add Movie
   function handleAddMovieSubmit(e){
     e.preventDefault()
-    console.log(newMovieGenre)
-    let newGenreId = genres.find(findGenreId).id
+
     fetch("http://localhost:9292/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        image: newMovieHash.image,
-        title: newMovieHash.title,
-        director: newMovieHash.director,
-        rating: newMovieHash.rating,
-        runtime: newMovieHash.runtime,
-        genre_id: newGenreId
-      }),
+      body: JSON.stringify(newMovieHash),
     })
     alert('You added a movie!')
+    setNewMovieHash({
+      image: '',
+      title: '',
+      director: '',
+      rating: 0,
+      runtime: 0,
+      genre_id: 0
+    })
   }
+  console.log(newMovieHash)
 
 
   //Form Submit for Edit Movie
   function handleEditMovieSubmit(e){
     e.preventDefault()
-    let foundMovieId = (movies.find(isThisTheMovie)).id
-    let foundGenreId = (genres.find(isThisTheGenre)).id
-    // console.log('found Movie ID', foundMovieId)
-    // console.log('found Genre ID', foundGenreId)
-    fetch(`http://localhost:9292/movie/${foundMovieId}`, {
+    fetch(`http://localhost:9292/movie/${editMovieId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        image: editMovieHash.image,
-        title: editMovieHash.title,
-        director: editMovieHash.director,
-        rating: editMovieHash.rating,
-        runtime: editMovieHash.runtime,
-        genre_id: foundGenreId
-      }),
+      body: JSON.stringify(editMovieHash),
     })
     alert('You edited a movie!')
   }
@@ -103,7 +109,7 @@ function AddMovie({genres, movies}){
         <form onSubmit={(e)=> handleAddMovieSubmit(e)} className="add_movie_form">
           <ul>
             <label className="label">Image URL: </label>
-            <input type='text' placeholder="Image URL" onChange={(e) => {
+            <input value={newMovieHash.image} type='text' placeholder="Image URL" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, image: e.target.value }
               })
@@ -112,7 +118,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
             <label className="label">Title: </label>
-            <input type='text'placeholder="Title" onChange={(e) => {
+            <input value={newMovieHash.title} type='text'placeholder="Title" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, title: e.target.value }
               })
@@ -121,7 +127,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
             <label className="label">Director: </label>
-            <input type='text' placeholder="Director" onChange={(e) => {
+            <input value={newMovieHash.director} type='text' placeholder="Director" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, director: e.target.value }
               })
@@ -130,7 +136,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Rating: </label>
-            <input className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
+            <input value={newMovieHash.rating} className="movie_form_input" type='number'step="0.1" min="0" max="10" placeholder="Rating" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, rating: parseFloat(e.target.value)}
               })
@@ -139,7 +145,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Runtime: </label>
-            <input className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
+            <input value={newMovieHash.runtime} className="movie_form_input" type='number' min="0" placeholder="Runtime" onChange={(e) => {
               setNewMovieHash(prevState => {
                 return{...prevState, runtime: parseInt(e.target.value) }
               })
@@ -148,10 +154,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Genre: </label>
-            <select type='text' onChange={(e) => {
-              e.preventDefault()
-              setNewMovieGenre(e.target.value)
-              }}>
+            <select type='text' onChange={(e)=> {handleGenreChange(e)}}>
                 <option disabled selected>Select Genre</option>
               {genreNames && genreNames.map((name)=>{
                 return(
@@ -168,10 +171,7 @@ function AddMovie({genres, movies}){
         <form onSubmit={(e)=> handleEditMovieSubmit(e)} className="edit_movie_form">
           <ul>
           <label className="label">Edit Movie: </label>
-            <select type='text' onChange={(e)=> {
-              setEditMovieTitle(e.target.value)
-              console.log(editMovieTitle)
-            }}>
+            <select type='text' onChange={(e)=> {handleSelectMovieToEdit(e)}}>
                 <option disabled selected>Select Movie</option>
               {movieTitles && movieTitles.map((title)=>{
                 return(
@@ -222,11 +222,7 @@ function AddMovie({genres, movies}){
           </ul>
           <ul>
           <label className="label">Genre: </label>
-          <select type='text' onChange={(e) => {
-              e.preventDefault()
-              setEditMovieGenre(e.target.value)
-              console.log(editMovieGenre)
-              }}>
+          <select type='text' onChange={(e) => {handleEditMovieGenre(e)}}>
                 <option disabled selected>Select Genre</option>
               {genreNames && genreNames.map((name)=>{
                 return(

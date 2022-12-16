@@ -10,19 +10,19 @@ function MovieCards({ movieList, handleDeleteMovie }) {
 
   const renderCard = (movie)=> {
     return(
-      <div className='movie_list_cards'>
-         <Card style={{ width: '18rem' }} key={movie.title} className="box">
+      <div key={movie.id} className='movie_list_cards'>
+        <Card style={{ width: '18rem' }} className="box">
         <Card.Img variant="top" src={movie.image} className="cardImg"/>
         <Card.Body className="cardBody">
           <h2 className="cardTitle">{movie.title}</h2>
           <div className='cardText'>
             <ul>Director | {movie.director}</ul>
-            <ul>{movie.rating} | {movie.runtime} mins</ul>
+            <ul>{movie.rating} ⭐ | {movie.runtime} mins</ul>
             <ul>{movie.genre.name}</ul>
           </div>
         </Card.Body>
         <button className="delete_card_button" onClick={() => handleDeleteMovie(movie)} >Delete</button>
-      </Card>
+        </Card>
       </div>
     )      
     }
