@@ -24,7 +24,10 @@ function App() {
     history.push("/movies")
   }
 
-  function handleNewGenre(){
+  function handleNewGenre(data){
+    console.log('genres', genres, 'data', data)
+    const updatedGenresArray = [...genres, data]
+    setGenres(updatedGenresArray)
     history.push("/genres")
   }
 

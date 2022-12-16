@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
 function AddGenre ({ handleNewGenre }){
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
+  const [newGenre, setNewGenre]= useState({
+    name: '',
+    description: ''
+  })
+
 
   function handleSubmit(e){
     e.preventDefault()
@@ -11,20 +14,13 @@ function AddGenre ({ handleNewGenre }){
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        name: `${name}`,
-        description: `${description}`
-      }),
+      body: JSON.stringify(newGenre),
     })
     .then(resp => resp.json())
     .then(data => {
-      setName('')
-      setDescription('')
       alert(`You just created a new genre, ${data.name}!`)
-      handleNewGenre()
+      handleNewGenre(data)
     })
-
-    // handleHistory()
   }
 
   
@@ -35,16 +31,18 @@ function AddGenre ({ handleNewGenre }){
         <form className="add_genre_form" onSubmit={(e)=>handleSubmit(e)}>
         <ul>
           <label className="label">New Genre Name: </label>
-          <input className="genre_form_input" value={name} type='text' placeholder="Name" onChange={(e) => {
-            setName(e.target.value)
-            console.log(name)
+          <input className="genre_form_input" value={newGenre.name} type='text' placeholder="Name" onChange={(e) => {
+            setNewGenre(prevState =>{
+              return {...prevState, name: e.target.value}
+            })
           }}/>
         </ul>
         <ul>
         <label className="label">New Genre Description: </label>
-          <input className="genre_form_input" value={description} type='text' placeholder="Description"onChange={(e) => {
-            setDescription(e.target.value)
-            console.log(description)
+          <input className="genre_form_input" value={newGenre.description} type='text' placeholder="Description"onChange={(e) => {
+            setNewGenre(prevState =>{
+              return {...prevState, description: e.target.value}
+            })
           }}/>
         </ul>
         <button className="add_genre_button" type='submit'>Add New Genre</button>
