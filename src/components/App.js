@@ -13,6 +13,7 @@ function App() {
   const [genres, setGenres] =useState([])
   const [movies, setMovies] = useState([])
   const history= useHistory();
+  console.log(movies)
 
   function handleNewMovie(data){
     const newMoviesArray= [...movies, data]
@@ -47,6 +48,7 @@ function App() {
     })
   },[])
 
+  console.log(movies)
   
   return (
     <div className="app">
