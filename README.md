@@ -1,8 +1,8 @@
-MOVIEZONE
+**MOVIEZONE**
 
 Welcome to MovieZone! This is where you can store a list of your favorite movies including some information about them as well. You can add, edit, and add new movies. You can also see a list of genres, and add new ones.
 
-You start off at the Home page, where it has the title MOVIEZONE and a brief introduction to the webpage.
+You start off at the Home page, where it has the title *MOVIEZONE* and a brief introduction to the webpage.
 
 Moving on to the Movies page is where the Movie List is located, displaying movie cards with the following information:
 - image
