@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+**MOVIEZONE**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to MovieZone! This is where you can store a list of your favorite movies including some information about them as well. You can add, edit, and add new movies. You can also see a list of genres, and add new ones.
 
-## Available Scripts
+You start off at the Home page, where it has the title *MOVIEZONE* and a brief introduction to the webpage.
 
-In the project directory, you can run:
+Moving on to the Movies page is where the Movie List is located, displaying movie cards with the following information:
+- image
+- title
+- director
+- rating
+- runtime
+- genre
 
-### `npm start`
+The movie cards also have a delete button, so that you can delete a specific movie. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Next is the Genres page which is a list of genres with the following information:
+- name
+- description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Next is the Add/Edit Movie page. This contains two forms, one to add a movie and one to edit an existing movie. Once you fill out the form of the task you want to complete, you will get an alert and be programattically navigated to the Movies page so you can see your new creation!
 
-### `npm test`
+Lastly is the Add Genre page, which has a simple form to fill out about a new genre you'd like to add. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is a great way to store movie favorites and share with your friends!
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
