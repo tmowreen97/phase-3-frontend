@@ -140,11 +140,17 @@ body{
   background-color: rgba(192, 197, 197, 0.79);
   text-align: justify;
   margin-left: 50px;
-  margin-right: 80px;
-  padding-left: 10px;
+  margin-right: 50px;
+  padding-left: 30px;
   padding-right: 10px;
   font-family: 'Roboto Slab';
   font-weight: 500;
+  padding-bottom: 20px;
+
+}
+
+.genres{
+  margin-bottom: 50px;
 }
 .genre_list_title{
   text-align: center;
@@ -153,7 +159,7 @@ body{
   text-shadow: 80%;
   text-shadow: 30px;
   background-color: black;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 .genre_title{
   font-family: 'Lora';
@@ -174,5 +180,17 @@ body{
   list-style-type: square;
   font-size: 110%;
   padding-bottom: 10px;
+}
+.genre_movies_title{
+  padding-left: 30px;
+}
+.genre_movies{
+  list-style: none;
+  padding-left: 30px;
+}
+.genre_movies::before{
+  content:'⇒';
+  position: relative;
+  left: 0;
 }
 

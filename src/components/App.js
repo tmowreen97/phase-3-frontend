@@ -13,7 +13,6 @@ function App() {
   const [genres, setGenres] =useState([])
   const [movies, setMovies] = useState([])
   const history= useHistory();
-  console.log(movies)
 
   function handleNewMovie(data){
     const newMoviesArray= [...movies, data]
@@ -21,12 +20,16 @@ function App() {
     history.push("/movies")
   }
 
-  function handleEditMovie(){
+  function handleEditMovie(editMovieId, data){
+    const updatedMovies = movies.filter((movie)=> {
+      return movie.id != editMovieId
+    })
+    updatedMovies.push(data)
+    setMovies(updatedMovies)
     history.push("/movies")
   }
 
   function handleNewGenre(data){
-    console.log('genres', genres, 'data', data)
     const updatedGenresArray = [...genres, data]
     setGenres(updatedGenresArray)
     history.push("/genres")
@@ -47,8 +50,6 @@ function App() {
       setMovies(data)
     })
   },[])
-
-  console.log(movies)
   
   return (
     <div className="app">

@@ -104,6 +104,7 @@ function handleSelectMovieToEdit(e){
 //Form Submit for Edit Movie
   function handleEditMovieSubmit(e){
     e.preventDefault()
+    let movieToEdit = editMovie.id
     fetch(`http://localhost:9292/movie/${editMovie.id}`, {
       method: "PATCH",
       headers: {
@@ -113,7 +114,7 @@ function handleSelectMovieToEdit(e){
     })
     .then(resp => resp.json())
     .then(data=> {
-      handleEditMovie()
+      handleEditMovie(movieToEdit, data)
       alert(`You just edited ${editMovie.title}!`)
       setEditMovieHash({
         genre_id: 0,
@@ -124,6 +125,7 @@ function handleSelectMovieToEdit(e){
         runtime: 0
     })
     })
+
     
   }
 
