@@ -1,8 +1,6 @@
-import React, { useEffect, useState }from "react";
+import React, { useState }from "react";
 
-function AddMovie({genres, movies, handleNewMovie, handleEditMovie}){
-  const [movieTitles, setMovieTitles]= useState('')
-  const [genreNames, setGenreNames]= useState('')
+function AddMovie({genres, movies, handleNewMovie, handleEditMovie, genreNames, movieTitles}){
   const [editMovie, setEditMovie] = useState({
     title: '',
     id: 0
@@ -24,26 +22,13 @@ function AddMovie({genres, movies, handleNewMovie, handleEditMovie}){
     runtime: ''
   })
 
-//Select options of Movie Titles to edit
-  useEffect(()=> {
-    fetch("http://localhost:9292/movies/titles")
-    .then(resp=> resp.json())
-    .then(data=> setMovieTitles(data))
-  },[])
-
-//Select options of Genre Names to add to a new movie
-  useEffect(()=> {
-    fetch("http://localhost:9292/genres/names")
-    .then(resp=> resp.json())
-    .then(data=> setGenreNames(data))
-  },[])
 
 //Handle functions
 
 //new movie genre
   function handleGenreChange(e){
     e.preventDefault()
-    genres.map((genre)=> {
+    genres.forEach((genre)=> {
       if (genre.name === e.target.value) {
         setNewMovieHash(prevState => {
           return{...prevState, genre_id: genre.id}
@@ -51,10 +36,11 @@ function AddMovie({genres, movies, handleNewMovie, handleEditMovie}){
       }
     })
   }
+  console.log(newMovieHash)
 //movie selected to edit
 function handleSelectMovieToEdit(e){
     e.preventDefault()
-    movies.map((movie)=> {
+    movies.forEach((movie)=> {
       if (movie.title === e.target.value){
         setEditMovie({
           title: movie.title,
@@ -65,7 +51,7 @@ function handleSelectMovieToEdit(e){
   }
 //changing selected movie genre
   function handleEditMovieGenre(e){
-    genres.map((genre)=> {
+    genres.forEach((genre)=> {
       if (genre.name===e.target.value){
         setEditMovieHash(prevState=> {
           return{...prevState, genre_id: genre.id}
@@ -78,7 +64,6 @@ function handleSelectMovieToEdit(e){
 //Form Submit for Add Movie
   function handleAddMovieSubmit(e){
     e.preventDefault();
-    const path = "/movies"
     fetch("http://localhost:9292/movies", {
       method: "POST",
       headers: {
@@ -185,7 +170,7 @@ function handleSelectMovieToEdit(e){
                 <option disabled selected>Select Genre</option>
               {genreNames && genreNames.map((name)=>{
                 return(
-                  <option key={name.name} value={name.name}>{name.name}</option>
+                  <option key={name} value={name}>{name}</option>
                 )
               })}
             </select>
@@ -202,7 +187,7 @@ function handleSelectMovieToEdit(e){
                 <option disabled selected>Select Movie</option>
               {movieTitles && movieTitles.map((title)=>{
                 return(
-                  <option key={title.title} value={title.title}>{title.title}</option>
+                  <option key={title} value={title}>{title}</option>
                 )
               })}
             </select>
@@ -253,7 +238,7 @@ function handleSelectMovieToEdit(e){
                 <option disabled selected>Select Genre</option>
               {genreNames && genreNames.map((name)=>{
                 return(
-                  <option key={name.name} value={name.name}>{name.name}</option>
+                  <option key={name} value={name}>{name}</option>
                 )
               })}
             </select>

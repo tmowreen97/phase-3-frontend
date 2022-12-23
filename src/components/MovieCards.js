@@ -3,7 +3,6 @@ import '../box.css'
 
 
 function MovieCards({ movieList, handleDeleteMovie }) {
-
   const renderCard = (movie)=> {
     return(
       <div key={movie.id} className='movie_list_cards'>

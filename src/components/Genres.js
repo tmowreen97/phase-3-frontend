@@ -7,7 +7,7 @@ function Genres ({genres}){
       <div className="genre_list" key={genre.name}>
         <h2 className="genre_title">{genre.name}</h2>
         <li className="genre_desc">{genre.description}</li>
-        {genre.movies.length>0 && <h5 className="genre_movies_title">Movies:</h5>}
+        {genre.movies.length >0 && <h5 className="genre_movies_title">Movies:</h5>}
         {genre.movies.length > 0 && 
           genre.movies.map((movie)=> {
             return <li key={movie.title} className="genre_movies">{movie.title}</li>

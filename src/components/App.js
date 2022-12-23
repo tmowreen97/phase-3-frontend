@@ -12,6 +12,8 @@ import AddGenre from "./AddGenre";
 function App() {
   const [genres, setGenres] =useState([])
   const [movies, setMovies] = useState([])
+  const [genreNames, setGenreNames] = useState([])
+  const [movieTitles, setMovieTitles]= useState([])
   const history= useHistory();
 
   function handleNewMovie(data){
@@ -22,7 +24,7 @@ function App() {
 
   function handleEditMovie(editMovieId, data){
     const updatedMovies = movies.filter((movie)=> {
-      return movie.id != editMovieId
+      return movie.id !== editMovieId
     })
     updatedMovies.push(data)
     setMovies(updatedMovies)
@@ -36,18 +38,27 @@ function App() {
   }
 
 
-
   useEffect(()=>{
     fetch("http://localhost:9292/genres")
     .then(resp => resp.json())
-    .then(data => setGenres(data))
-  },[])
-
-  useEffect(()=>{
-    fetch("http://localhost:9292/movies")
-    .then(resp=> resp.json())
-    .then((data)=> {
-      setMovies(data)
+    .then(data =>{
+      setGenres(data)
+      let moviesArray =[]
+      let genreNamesArray = []
+      let movieTitlesArray = []
+      data.forEach(genre=> {
+        genre.movies.forEach(movie => {
+          movie.genre = genre
+        })
+        genreNamesArray.push(genre.name)
+        genre.movies.forEach(movie=> {
+          movieTitlesArray.push(movie.title)
+        })
+        moviesArray.push(genre.movies)
+      })
+      setMovies(moviesArray.flat())
+      setGenreNames(genreNamesArray)
+      setMovieTitles(movieTitlesArray)
     })
   },[])
   
@@ -62,7 +73,7 @@ function App() {
             <Genres setGenres={setGenres} genres={genres}/>
           </Route>
           <Route path="/add-edit-movie">
-            <AddMovie genres={genres} movies={movies} handleNewMovie={handleNewMovie} handleEditMovie={handleEditMovie}/>
+            <AddMovie genres={genres} movies={movies} handleNewMovie={handleNewMovie} handleEditMovie={handleEditMovie} genreNames={genreNames} movieTitles={movieTitles}/>
           </Route>
           <Route path="/add-genre">
             <AddGenre  setGenres={setGenres} handleNewGenre={handleNewGenre}/>
