@@ -4,7 +4,7 @@ Are you a movie buff? Enter the MovieZone! Here you can create a display of all 
 
 Here's a video on how to use the MovieZone <https://youtu.be/kcz9E44IfzY>.\
 Backend link https://github.com/tmowreen97/Phase-3-Project
-
+In order to install this application, you must have Ruby and Node Package Manager installed. Start by forking and creating a copy of this repo. Once you do that, you can click the 'Code' button to copy the SSH key and perform a 'git clone' with that *SSH* in your terminal. When you're done with that, you're ready to run the sever (npm start) and start using MovieZone!
 ## Functionality
 
 You start off at the Home page, where it has the title *MOVIEZONE* and a brief introduction to the webpage.
