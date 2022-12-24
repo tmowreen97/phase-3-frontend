@@ -3,8 +3,14 @@
 Are you a movie buff? Enter the MovieZone! Here you can create a display of all your favorite movies and share with your friends. You can add genres that you like, and add movies to coincide with those genres. You could also add movies that you're interested in seeing so you can always go back to the MovieZone to help pick a movie to watch.
 
 Here's a video on how to use the MovieZone <https://youtu.be/kcz9E44IfzY>.\
-Backend link https://github.com/tmowreen97/Phase-3-Project. \
-In order to install this application, you must have Ruby and Node Package Manager installed. Start by forking and creating a copy of this repo. Once you do that, you can click the 'Code' button to copy the SSH key and perform a 'git clone' with that *SSH* in your terminal. When you're done with that, you're ready to run the sever (npm start) and start using MovieZone!
+Backend link https://github.com/tmowreen97/Phase-3-Project. 
+
+## Installation
+
+In order to install this application, you must have Ruby and Node Package Manager installed. Start by forking and creating a copy of this repo. Once you do that, you can click the 'Code' button to copy the SSH key and perform a 'git clone' with that *SSH* in your terminal. 
+When you're done with that, make sure to install npm, run *'npm install'*.
+Lastly run the server! Run *'npm start'* and MovieZone should come up on your browser!
+
 ## Functionality
 
 You start off at the Home page, where it has the title *MOVIEZONE* and a brief introduction to the webpage.
