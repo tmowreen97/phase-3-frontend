@@ -8,7 +8,7 @@ Backend link https://github.com/tmowreen97/Phase-3-Project.
 ## Installation
 
 In order to install this application, you must have Ruby and Node Package Manager installed. Start by forking and creating a copy of this repo. Once you do that, you can click the 'Code' button to copy the SSH key and perform a 'git clone' with that *SSH* in your terminal. 
-When you're done with that, make sure to install npm, run *'npm install'*.
+When you're done with that, ensure that you're in the correct directory by running cd phase-3-frontend in your terminal. Then install npm, run *'npm install'*.
 Lastly run the server! Run *'npm start'* and MovieZone should come up on your browser!
 
 ## Functionality
